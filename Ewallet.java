@@ -1,22 +1,23 @@
 package PJBL;
 
-public class Ewallet extends Pembayaran {
+public class Ewallet implements Pembayaran {
 
-    Ewallet(int saldo) {
-        super(saldo);
+    private int saldo;
+
+    public Ewallet(int saldo) {
+        this.saldo = saldo;
     }
 
     @Override
-    boolean bayar(int total) {
-        if (saldo >= total) {
-            saldo -= total;
-            System.out.println("Melakukan pembayaran sebesar: " + total + " melalui E-wallet");
+    public boolean bayar(int jumlah) {
+        if (saldo >= jumlah) {
+            saldo -= jumlah;
+            System.out.println("E-Wallet berhasil bayar: " + jumlah);
             System.out.println("Sisa saldo: " + saldo);
             return true;
         } else {
-            System.out.println("Saldo E-wallet tidak mencukupi");
+            System.out.println("Saldo tidak cukup!");
             return false;
         }
     }
-    
 }

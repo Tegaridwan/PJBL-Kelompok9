@@ -1,11 +1,6 @@
 package PJBL;
 
-abstract class Pembayaran {
-    int saldo;
+abstract interface Pembayaran {
+   boolean bayar(int total);
 
-    Pembayaran(int saldo) {
-        this.saldo = saldo;
-    }
-
-    abstract boolean bayar(int total);
 }

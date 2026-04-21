@@ -1,21 +1,23 @@
 package PJBL;
 
-public class TransferBank extends Pembayaran {
-    TransferBank(int saldo) {
-        super(saldo);
+public class TransferBank implements Pembayaran {
+
+    private int saldo;
+
+    public TransferBank(int saldo) {
+        this.saldo = saldo;
     }
 
     @Override
-    boolean bayar(int total) {
+    public boolean bayar(int total) {
         if (saldo >= total) {
             saldo -= total;
-            System.out.println("Melakukan pembayaran sebesar: " + total + " melalui Transfer Bank");
+            System.out.println("Transfer Bank berhasil: " + total);
             System.out.println("Sisa saldo: " + saldo);
             return true;
         } else {
-            System.out.println("Saldo Transfer Bank tidak mencukupi");
+            System.out.println("Saldo tidak cukup!");
             return false;
         }
     }
-
 }
