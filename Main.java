@@ -3,28 +3,50 @@ package PJBL;
 public class Main {
     public static void main(String[] args) {
 
-        Pembeli p1 = new Pembeli("Budi");
-        Pembeli p2 = new Reseller("Siti", 150000);
+        System.out.println("=== SISTEM PEMBAYARAN ===");
 
-        Penjual penjual1 = new Penjual("Toko Baju");
-        Penjual penjual2 = new Grosir("Toko Grosir");
+        int totalPembayaran = 10000;
 
-        Ulasan u1 = new Ulasan(p1.nama, "Pelayanan sangat bagus!", "2024-06-01");
-        Ulasan u2 = new Ulasan(p2.nama, "Ok", "2024-06-02");
+        System.out.println("\n=== PEMBAYARAN ===");
+
+        Pembayaran ewallet = new Ewallet(500);
+        boolean statusEwallet = ewallet.bayar(totalPembayaran);
+
+        Pembayaran transfer = new TransferBank(100000);
+        boolean statusTransfer = transfer.bayar(totalPembayaran);
+
+        System.out.println("E-Wallet status  : " + (statusEwallet ? "BERHASIL" : "GAGAL"));
+        System.out.println("Transfer status  : " + (statusTransfer ? "BERHASIL" : "GAGAL"));
+
+        System.out.println("\n------------------------------");
+
+        System.out.println("=== DATA PEMBELI ===");
+
+        Pembeli pembeli = new Pembeli("Budi");
+        Reseller reseller = new Reseller("Siti", 150000);
+
+        pembeli.tampil();
+        reseller.tampil();
+
+        System.out.println("\n=== DATA PENJUAL ===");
+
+        Penjual tokoBaju = new Penjual("Toko Baju");
+        Penjual tokoGrosir = new Grosir("Toko Grosir");
+
+        System.out.println("\n=== TRANSAKSI ULASAN ===");
+
+        Ulasan ulasan1 = new Ulasan(pembeli.nama, "Pelayanan sangat bagus!", "2024-06-01");
+        Ulasan ulasan2 = new Ulasan(reseller.nama, "Ok", "2024-06-02");
 
         Printer printer = new ConsolePrinter();
         UlasanService service = new UlasanService(printer);
 
-        System.out.println("=== PEMBELI ===");
-        p1.tampil();
-        p2.tampil();
+        System.out.println("\n=== ULASAN 1 ===");
+        tokoBaju.terimaUlasan(ulasan1.isi);
+        service.kirimUlasan(ulasan1);
 
-        System.out.println("\n=== TRANSAKSI 1 ===");
-        penjual1.terimaUlasan(u1.isi);
-        service.kirimUlasan(u1);
-
-        System.out.println("\n=== TRANSAKSI 2 ===");
-        penjual2.terimaUlasan(u2.isi);
-        service.kirimUlasan(u2);
+        System.out.println("\n=== ULASAN 2 ===");
+        tokoGrosir.terimaUlasan(ulasan2.isi);
+        service.kirimUlasan(ulasan2);
     }
 }
