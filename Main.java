@@ -1,14 +1,12 @@
 package PJBL;
 
-import LatihanPBO.Penjual;
-
-public public class Main {
+public class Main {
     public static void main(String[] args) {
 
         Pembeli p1 = new Pembeli("Budi");
         Pembeli p2 = new Reseller("Siti", 150000);
 
-        Penjual penjual1 = new Penjual("Toko Biasa");
+        Penjual penjual1 = new Penjual("Toko Baju");
         Penjual penjual2 = new Grosir("Toko Grosir");
 
         Ulasan u1 = new Ulasan(p1.nama, "Pelayanan sangat bagus!", "2024-06-01");
