@@ -1,4 +1,4 @@
-package PJBL;
+package PJBLinterface;
 
 public class UlasanService {
     private Printer printer;
@@ -12,7 +12,6 @@ public class UlasanService {
             System.out.println("Gagal mengirim ulasan (terlalu pendek)");
             return false;
         }
-
         printer.print(u);
         System.out.println("Ulasan berhasil dikirim!");
         return true;
