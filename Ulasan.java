@@ -1,4 +1,4 @@
-package PJBL;
+package PJBLinterface;
 
 public class Ulasan {
     String nama, isi, tanggal;

@@ -22,10 +22,16 @@ public class Main {
         boolean statusTransfer = transfer.bayar(totalPembayaran);
 
         System.out.println();
+        System.out.println("  >> Metode: E-Wallet (Saldo: Rp500) bayar jumlah negatif:");
+        Pembayaran ewalletNegatif = new Ewallet(500);
+        boolean statusNegatif = ewalletNegatif.bayar(-5000);
+
+        System.out.println();
         garis('.', 50);
         System.out.println("  REKAP PEMBAYARAN:");
-        System.out.println("  E-Wallet           : " + badge(statusEwallet));
-        System.out.println("  Transfer Bank      : " + badge(statusTransfer));
+        System.out.println("  E-Wallet            : " + badge(statusEwallet));
+        System.out.println("  Transfer Bank       : " + badge(statusTransfer));
+        System.out.println("  E-Wallet (negatif)  : " + badge(statusNegatif));
         garis('.', 50);
 
         System.out.println();
@@ -62,7 +68,7 @@ public class Main {
         garis('-', 50);
 
         Ulasan ulasan1 = new Ulasan(pembeli.nama,  "Pelayanan sangat bagus!", "2024-06-01");
-        Ulasan ulasan2 = new Ulasan(reseller.nama, null, "2024-06-02"); // <-- BUG: isi null
+        Ulasan ulasan2 = new Ulasan(reseller.nama, "Ok",                      "2024-06-02");
 
         Printer printer       = new ConsolePrinter();
         UlasanService service = new UlasanService(printer);
@@ -74,12 +80,12 @@ public class Main {
 
         System.out.println();
         System.out.println("  ---- Ulasan #2 ----");
-        tokoGrosir.terimaUlasan(ulasan2.isi); // <-- CRASH: ulasan2.isi = null
+        tokoGrosir.terimaUlasan(ulasan2.isi);
         service.kirimUlasan(ulasan2);
 
         System.out.println();
         garis('=', 50);
-        tengah("Selesai", 50);
+        tengah("Semua proses selesai tanpa crash!", 50);
         garis('=', 50);
     }
 

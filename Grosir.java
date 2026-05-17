@@ -1,4 +1,4 @@
-package PJBL;
+package PJBLinterface;
 
 public class Grosir extends Penjual {
 
@@ -9,5 +9,10 @@ public class Grosir extends Penjual {
     @Override
     void terimaUlasan(String isi) {
         System.out.println(namaToko + " (Grosir) menerima: " + isi);
+    }
+
+    @Override
+    void tampil() {
+        System.out.println("Grosir: " + namaToko);
     }
 }
