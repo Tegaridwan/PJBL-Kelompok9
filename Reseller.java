@@ -1,4 +1,4 @@
-package PJBL;
+package PJBLinterface;
 
 public class Reseller extends Pembeli {
     int hargaJual;
