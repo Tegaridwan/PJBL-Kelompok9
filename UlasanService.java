@@ -1,5 +1,9 @@
 package PJBLinterface;
 
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.PrintWriter;
+
 public class UlasanService {
     private Printer printer;
 
@@ -31,6 +35,7 @@ public class UlasanService {
             }
 
             printer.print(u);
+            tulisRecordUlasan(u);
             System.out.println("Ulasan berhasil dikirim!");
             return true;
 
@@ -44,6 +49,17 @@ public class UlasanService {
 
         } finally {
             System.out.println("Proses kirimUlasan selesai.");
+        }
+    }
+
+    private void tulisRecordUlasan(Ulasan u) {
+        try (PrintWriter out = new PrintWriter(new FileWriter("recordUlasan.txt", true))) {
+            out.println("Nama: " + u.nama);
+            out.println("Tanggal: " + u.tanggal);
+            out.println("Isi: " + u.isi);
+            out.println("---");
+        } catch (IOException e) {
+            System.out.println("[ERROR] Gagal menyimpan record ulasan: " + e.getMessage());
         }
     }
 }
